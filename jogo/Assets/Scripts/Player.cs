@@ -43,12 +43,12 @@ public class Player : MonoBehaviour
         }
         if(teclas == 0)
         {
-            anim.SetInteger("c", 0);
+            anim.SetInteger("transition", 0);
         }
     }
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isground == true)
         {
             rigd.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             anim.SetInteger("transition", 2);
