@@ -4,6 +4,8 @@ public class Player : MonoBehaviour
 {
     //Pública: é acessivel no inspector;
     //Privada não é encontrada em nenhum outro lugar;
+    public Vector2 posicaoInicial;
+    public GameManager gameManager;
 
     public Animator anim;
     private Rigidbody2D rigd;
@@ -17,6 +19,7 @@ public class Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rigd = GetComponent<Rigidbody2D>();
+        posicaoInicial = transform.position;  //pega posição inicial
     }
     
     // Update is called once per frame
@@ -24,6 +27,11 @@ public class Player : MonoBehaviour
     {
         Move();
         Jump();
+    }
+
+    public void ReiniciarPosicao()
+    {
+        transform.position = posicaoInicial;
     }
 
     void Move()
@@ -61,6 +69,12 @@ public class Player : MonoBehaviour
         {
             isground = true;
             Debug.Log("esta no chão");
+        }
+        if (collision.gameObject.tag == "Morreu")
+        {
+            Debug.Log("Morreu");
+            GameObject player = GameObject.FindWithTag("Player");
+            player.GetComponent<Player>().ReiniciarPosicao();
         }
     }
 }

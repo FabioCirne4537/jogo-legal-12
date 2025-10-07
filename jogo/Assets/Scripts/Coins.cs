@@ -3,6 +3,7 @@ using UnityEngine;
 public class Coins : MonoBehaviour
 {
     private int points;
+    public GameManager gameManager;
     
     void Start()
     {
@@ -19,8 +20,9 @@ public class Coins : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            points = points + 10;
-            Debug.Log("Você pegou a moeda.");
+            gameManager.Addpontos(10);
+            Destroy(gameObject);
+            //Debug.Log("Você pegou a moeda.");
         }
     }
 
