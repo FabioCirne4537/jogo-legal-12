@@ -1,9 +1,12 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public int pontos = 0;
     public int vidas = 5;
+
+    public TextMeshProUGUI textPontos;
 
 
     public void Addpontos(int qtd)     //Pontos
@@ -14,6 +17,8 @@ public class GameManager : MonoBehaviour
         {
             pontos = 0;
         }
+
+        textPontos.text = "Pontos: " + pontos;
 
         Debug.Log("Pontos: " + pontos);
     }
